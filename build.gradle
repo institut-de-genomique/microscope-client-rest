@@ -6,7 +6,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 
-version = '0.1.0'
+version = '0.1.0-SNAPSHOT'
 group   = "fr.cea.ig.microscope.client.rest"
 
 task packageJavadoc(type: Jar, dependsOn: 'javadoc') {
@@ -32,7 +32,7 @@ task sourceJar(type: Jar) {
 jar {
     manifest.attributes provider: 'genoscope'
     baseName = 'microscope-remote-model'
-    version = '0.1.0'
+    version = '0.1.0-SNAPSHOT'
 }
 
 
