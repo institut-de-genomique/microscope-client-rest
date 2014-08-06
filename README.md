@@ -1,2 +1,2 @@
-microscope-rest-client
-======================
+grools-microscope
+=================
