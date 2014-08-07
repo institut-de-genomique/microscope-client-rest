@@ -1,7 +1,9 @@
 package fr.cea.ig.microscope.client.rest;
 
-import fr.cea.ig.grools.microscope.GenomicObjectExtension;
-import fr.cea.ig.grools.microscope.RestClient;
+import fr.cea.ig.microscope.client.model.GenomicObjectExtension;
+import fr.cea.ig.microscope.client.model.GoReaction;
+import fr.cea.ig.microscope.client.model.Organism;
+import fr.cea.ig.microscope.client.rest.RestClient;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,17 +19,41 @@ public class RestClientTest {
     }
 
     @Test
-    public void testGetGenomicObject() {
-        GenomicObjectExtension[] goArray =  mRestClient.getGenomicObject( 31 );
-        assertNotNull( goArray );
-        assertTrue( goArray.length > 1);
+    public void testGetGenomicObjects() {
+        GenomicObjectExtension[] goArray = mRestClient.getGenomicObjects(31);
+        assertNotNull(goArray);
+        assertTrue(goArray.length > 1);
         GenomicObjectExtension go = goArray[0];
-        assertTrue( go instanceof GenomicObjectExtension );
+        assertTrue(go instanceof GenomicObjectExtension);
     }
 
     @Test
-    public void test getGenomicObjectHavingPathway(){
+    public void testGetGenomicObjectHavingPathway() {
 
     }
 
+    @Test
+    public void testGetetOrganism() {
+    }
+
+    @Test
+    public void testGetOrganisms() {
+    }
+
+    @Test
+    public void testGetNcbiTaxon() {
+    }
+
+    @Test
+    public void testGetMicroscopeTaxon() {
+    }
+
+    @Test
+    public void testGetReactions() {
+    }
+
+    @Test
+    public void testGetReaction() {
+
+    }
 }

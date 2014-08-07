@@ -4,6 +4,12 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 
+import fr.cea.ig.microscope.client.model.GenomicObjectExtension;
+import fr.cea.ig.microscope.client.model.GenomicObject;
+import fr.cea.ig.microscope.client.model.GoReactionId;
+import fr.cea.ig.microscope.client.model.GoReaction;
+import fr.cea.ig.microscope.client.model.Organism;
+
 public class RestClient {
 
     public static final String GET_GENOMIC_OBJECTS                  = "/api/microscope/genomes/genomic-objects/list-from-organism/{oId}";
@@ -42,7 +48,7 @@ public class RestClient {
     }
 
 
-    public GenomicObjectExtension[] getGenomicObject( final int oId ){
+    public GenomicObjectExtension[] getGenomicObjects( final int oId ){
         return mRestTemplate.getForEntity( SERVER_URI+GET_GENOMIC_OBJECTS, GenomicObjectExtension[].class, oId).getBody();
     }
 
