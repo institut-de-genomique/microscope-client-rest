@@ -2,12 +2,18 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'nexus'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility     = 1.8
+targetCompatibility     = 1.8
+version                 = '0.1.0-SNAPSHOT'
+group                   = "fr.cea.ig.microscope.client.rest"
+def projectName         = 'microscope-rest-client'
+def projectDescription  = 'Microscope rest client to query microscope databases'
+def projectUrl          = 'https://github.com/institut-de-genomique/microscope-rest-client'
 
 
-version = '0.1.0-SNAPSHOT'
-group   = "fr.cea.ig.microscope.client.rest"
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
 
 task packageJavadoc(type: Jar, dependsOn: 'javadoc') {
     from javadoc.destinationDir
@@ -25,14 +31,22 @@ artifacts {
     archives packageSources
 }
 
-task sourceJar(type: Jar) {
-    from sourceSets.main.allJava
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+    compile     group: 'org.springframework',               name: 'spring-web',                 version: '4.0.6.RELEASE'
+    compile     group: 'org.slf4j',                         name: 'slf4j-api',                  version: '1.7.7'
+    compile     group: 'fr.cea.ig.microscope.client.model', name: 'microscope-client-model',    version: '0.1.0-SNAPSHOT'
+    compile fileTree(dir: 'libs', include: '*.jar')
+    testCompile group: 'junit',                             name: 'junit',                      version: '4.11'
 }
+
 
 jar {
     manifest.attributes provider: 'genoscope'
-    baseName = 'microscope-remote-model'
-    version = '0.1.0-SNAPSHOT'
+    manifest.attributes 'Created-By': 'LABGeM'
+    manifest.attributes 'Product-Name': projectName
+    baseName    = projectName
+    version     = version
 }
 
 
@@ -40,7 +54,7 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven {
-        url "https://gsphere.genoscope.cns.fr/nexus/content/groups/public"
+        url 'https://gsphere.genoscope.cns.fr/nexus/content/groups/public'
     }
 }
 
@@ -57,31 +71,31 @@ buildscript {
 
 modifyPom {
     project {
-        name 'microscope-rest-client'
-        description 'Microscope rest client to query microscope databases'
-        url 'https://github.com/institut-de-genomique/microscope-rest-client'
-        inceptionYear '2013'
+        name            projectName
+        description     projectDescription
+        url             projectUrl
+        inceptionYear   '2014'
 
         scm {
-            url 'https://github.com/institut-de-genomique/microscope-rest-client'
-            connection 'scm:https://github.com/institut-de-genomique/microscope-rest-client.git'
+            url                 'https://github.com/institut-de-genomique/microscope-rest-client'
+            connection          'scm:https://github.com/institut-de-genomique/microscope-rest-client.git'
             developerConnection 'scm:git@github.com:institut-de-genomique/microscope-rest-client.git'
         }
 
         licenses {
             license {
-                name 'CeCILL-C'
-                url 'http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.txt'
-                distribution 'repo'
+                name            'CeCILL'
+                url             'http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.html'
+                distribution    'repo'
             }
         }
 
         developers {
             developer {
-                id 'jmercier'
-                name 'Jonathan MERCIER'
-                email 'jmercier@genoscope.cns.fr'
-                timezone '+1'
+                id          'jmercier'
+                name        'Jonathan MERCIER'
+                email       'jmercier@genoscope.cns.fr'
+                timezone    '+1'
             }
         }
     }
@@ -94,24 +108,4 @@ nexus {
     sign                    = false
     repositoryUrl           = 'https://gsphere.genoscope.cns.fr/nexus/content/repositories/releases/'
     snapshotRepositoryUrl   = 'https://gsphere.genoscope.cns.fr/nexus/content/repositories/snapshots/'
-}
-
-test {
-  testLogging {
-    exceptionFormat "full"
-  }
-}
-
-task createWrapper(type: Wrapper) {
-    gradleVersion = '1.7'
-}
-
-
-dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
-    compile     group: 'org.springframework',               name: 'spring-web',                 version: '4.0.6.RELEASE'
-    compile     group: 'org.slf4j',                         name: 'slf4j-api',                  version: '1.7.7'
-    compile     group: 'fr.cea.ig.microscope.client.model', name: 'microscope-client-model',    version: '0.1.0-SNAPSHOT'
-    compile fileTree(dir: 'libs', include: '*.jar')
-    testCompile group: 'junit',                             name: 'junit',                      version: '4.11'
 }
