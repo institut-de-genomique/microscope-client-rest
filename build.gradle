@@ -6,8 +6,8 @@ sourceCompatibility     = 1.8
 targetCompatibility     = 1.8
 version                 = '0.1.0-SNAPSHOT'
 group                   = "fr.cea.ig.microscope.client.rest"
-def projectName         = 'microscope-rest-client'
-def projectDescription  = 'Microscope rest client to query microscope databases'
+def projectName         = 'microscope-client-rest'
+def projectDescription  = 'Microscope client rest query microscope databases remotely'
 def projectUrl          = 'https://github.com/institut-de-genomique/microscope-rest-client'
 
 
